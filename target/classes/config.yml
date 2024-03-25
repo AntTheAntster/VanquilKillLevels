@@ -1,0 +1,7 @@
+#MySQL Details
+MySQL: # SQL Settings
+  Host: "localhost"
+  Port: "3306"
+  Database: "vanquil"
+  Username: "root"
+  Password: ""
