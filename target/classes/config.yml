@@ -5,3 +5,9 @@ MySQL: # SQL Settings
   Database: "vanquil"
   Username: "root"
   Password: ""
+
+#Options for KillLevel
+Settings:
+  Starting Level: 0
+  Starting EXP: 0
+  Starting Kills: 0

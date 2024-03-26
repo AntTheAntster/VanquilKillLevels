@@ -1,7 +1,11 @@
 package uk.co.anttheantster.vanquil.killlevels;
 
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import uk.co.anttheantster.vanquil.killlevels.commands.CommandController;
+import uk.co.anttheantster.vanquil.killlevels.commands.ShowEXP;
+import uk.co.anttheantster.vanquil.killlevels.listeners.PlayerJoinSQL;
 import uk.co.anttheantster.vanquil.killlevels.utils.MessagesFile;
 import uk.co.anttheantster.vanquil.killlevels.utils.MySQL;
 import uk.co.anttheantster.vanquil.killlevels.utils.SQLGetter;
@@ -14,6 +18,9 @@ public class KillLevels extends JavaPlugin {
     public SQLGetter data;
 
     public MessagesFile messagesFile;
+    public ShowEXP showEXP;
+
+    private PluginManager pm = Bukkit.getPluginManager();
 
     @Override
     public void onDisable() {
@@ -38,14 +45,15 @@ public class KillLevels extends JavaPlugin {
     }
     private void registerClasses(){
         messagesFile = new MessagesFile(this);
+        showEXP = new ShowEXP(this);
     }
 
     private void registerCommands(){
-
+        getCommand("vkl").setExecutor(new CommandController(this, showEXP));
     }
 
     private void registerListeners(){
-
+        pm.registerEvents(new PlayerJoinSQL(this, messagesFile), this);
     }
 
     private void setupSQL() {
