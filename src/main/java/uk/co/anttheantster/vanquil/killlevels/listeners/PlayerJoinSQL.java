@@ -9,10 +9,8 @@ import uk.co.anttheantster.vanquil.killlevels.utils.MessagesFile;
 
 public class PlayerJoinSQL implements Listener {
     private final KillLevels plugin;
-    private final MessagesFile messages;
     public PlayerJoinSQL(KillLevels plugin, MessagesFile messages){
         this.plugin = plugin;
-        this.messages = messages;
     }
 
     @EventHandler

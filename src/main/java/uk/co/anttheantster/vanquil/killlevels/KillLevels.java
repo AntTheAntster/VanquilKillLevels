@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import uk.co.anttheantster.vanquil.killlevels.commands.CommandController;
 import uk.co.anttheantster.vanquil.killlevels.commands.ShowEXP;
 import uk.co.anttheantster.vanquil.killlevels.listeners.PlayerJoinSQL;
+import uk.co.anttheantster.vanquil.killlevels.listeners.PlayerKill;
 import uk.co.anttheantster.vanquil.killlevels.utils.MessagesFile;
 import uk.co.anttheantster.vanquil.killlevels.utils.MySQL;
 import uk.co.anttheantster.vanquil.killlevels.utils.SQLGetter;
@@ -54,6 +55,7 @@ public class KillLevels extends JavaPlugin {
 
     private void registerListeners(){
         pm.registerEvents(new PlayerJoinSQL(this, messagesFile), this);
+        pm.registerEvents(new PlayerKill(this), this);
     }
 
     private void setupSQL() {
