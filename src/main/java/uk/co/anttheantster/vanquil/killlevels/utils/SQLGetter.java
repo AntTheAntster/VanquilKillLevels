@@ -22,7 +22,7 @@ public class SQLGetter {
             //Create the "vklplayers" table in the Database if it doesn't exist
             ps = plugin.SQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS vklplayers "
                     //Table will store the players UUID, IGN, EXP, Level and Kills.
-                    + "(UUID VARCHAR(100),NAME VARCHAR(100),EXP VARCHAR(100),KILLS VARCHAR(100),LEVEL VARCHAR(100), PRIMARY KEY (UUID))");
+                    + "(UUID VARCHAR(100),NAME VARCHAR(100),EXP VARCHAR(100),EXPREQ VARCHAR(100),KILLS VARCHAR(100),LEVEL VARCHAR(100), PRIMARY KEY (UUID))");
             //Similar to "#saveConfig()" SQL classes have to "#executeUpdate()" after each modification.
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -134,6 +134,32 @@ public class SQLGetter {
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
                 String time = rs.getString("KILLS");
+                return time;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void setExpReq(int expReq, Player player){
+        try {
+            PreparedStatement ps = plugin.SQL.getConnection().prepareStatement("UPDATE vklplayers SET EXPREQ=? WHERE UUID=?");
+            ps.setString(1, Integer.toString(expReq));
+            ps.setString(2, player.getUniqueId().toString());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String getExpReq(Player player) {
+        try {
+            PreparedStatement ps = plugin.SQL.getConnection().prepareStatement("SELECT EXPREQ FROM vklplayers WHERE UUID=?");
+            ps.setString(1, player.getUniqueId().toString());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()){
+                String time = rs.getString("EXPREQ");
                 return time;
             }
         } catch (SQLException e) {

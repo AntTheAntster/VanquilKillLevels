@@ -9,8 +9,10 @@ import uk.co.anttheantster.vanquil.killlevels.KillLevels;
 public class PlayerKill implements Listener {
 
     private KillLevels plugin;
-    public PlayerKill(KillLevels plugin){
+    private LevelController levelController;
+    public PlayerKill(KillLevels plugin, LevelController levelController){
         this.plugin = plugin;
+        this.levelController = levelController;
     }
 
     @EventHandler
@@ -19,8 +21,7 @@ public class PlayerKill implements Listener {
         Player killer = e.getEntity().getKiller();
         Player player = e.getEntity().getPlayer();
 
-        int prevLevel = Integer.parseInt(plugin.data.getLevel(killer));
-        plugin.data.setLevel(prevLevel + 1, killer);
+        levelController.kill(killer);
     }
 
 }

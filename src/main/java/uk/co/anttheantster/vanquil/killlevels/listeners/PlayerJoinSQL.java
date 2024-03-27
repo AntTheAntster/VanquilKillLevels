@@ -9,7 +9,7 @@ import uk.co.anttheantster.vanquil.killlevels.utils.MessagesFile;
 
 public class PlayerJoinSQL implements Listener {
     private final KillLevels plugin;
-    public PlayerJoinSQL(KillLevels plugin, MessagesFile messages){
+    public PlayerJoinSQL(KillLevels plugin){
         this.plugin = plugin;
     }
 
@@ -20,6 +20,7 @@ public class PlayerJoinSQL implements Listener {
                 Player player = e.getPlayer();
                 plugin.data.createPlayer(player);
                 plugin.data.setEXP(plugin.getConfig().getInt("Settings.Starting EXP"), player);
+                plugin.data.setExpReq(plugin.getConfig().getInt("Settings.First Level Exp Req"), player);
                 plugin.data.setKills(plugin.getConfig().getInt("Settings.Starting Kills"), player);
                 plugin.data.setLevel(plugin.getConfig().getInt("Settings.Starting Level"), player);
             }

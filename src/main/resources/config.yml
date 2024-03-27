@@ -8,6 +8,12 @@ MySQL: # SQL Settings
 
 #Options for KillLevel
 Settings:
+  Stats GUI Enabled?: true #Enable/Disable the stats GUI (Disable if using external pStats plugin)
   Starting Level: 0
   Starting EXP: 0
   Starting Kills: 0
+  Exp Per Kill: 10
+  First Level Exp Req: 100 #Level up cost for first level.
+  Exp Increase: #How and how much the Exp required should increase per level
+    Type: "Percentage" #Either "Percentage" or "Amount"
+    Amount: 26 #The amount of percentage or flat amount the exp required per level will increase by

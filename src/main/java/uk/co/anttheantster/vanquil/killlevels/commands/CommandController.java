@@ -27,7 +27,7 @@ public class CommandController implements CommandExecutor {
             showEXP.show(player);
         }
         if (args[0].equalsIgnoreCase("level")){
-
+            showLevel.showLevel(player);
         }
         if (args[0].equalsIgnoreCase("kills")){
             showKills.showKills(player);

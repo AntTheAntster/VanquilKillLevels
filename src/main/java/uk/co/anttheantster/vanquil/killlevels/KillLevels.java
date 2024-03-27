@@ -8,6 +8,7 @@ import uk.co.anttheantster.vanquil.killlevels.commands.ShowEXP;
 import uk.co.anttheantster.vanquil.killlevels.commands.ShowKills;
 import uk.co.anttheantster.vanquil.killlevels.commands.ShowLevel;
 import uk.co.anttheantster.vanquil.killlevels.items.StatsGUIItems;
+import uk.co.anttheantster.vanquil.killlevels.listeners.LevelController;
 import uk.co.anttheantster.vanquil.killlevels.listeners.PlayerJoinSQL;
 import uk.co.anttheantster.vanquil.killlevels.listeners.PlayerKill;
 import uk.co.anttheantster.vanquil.killlevels.menus.StatsGUI;
@@ -30,6 +31,7 @@ public class KillLevels extends JavaPlugin {
     public ChatColor chatColor;
     public StatsGUI statsGUI;
     public StatsGUIItems statsGUIItems;
+    public LevelController levelController;
 
     private PluginManager pm = Bukkit.getPluginManager();
 
@@ -57,11 +59,12 @@ public class KillLevels extends JavaPlugin {
     private void registerClasses(){
         messagesFile = new MessagesFile(this);
         showEXP = new ShowEXP(this);
-        showLevel = new ShowLevel();
+        showLevel = new ShowLevel(this);
         showKills = new ShowKills(this);
         chatColor = new ChatColor();
         statsGUI = new StatsGUI(this, chatColor, statsGUIItems);
         statsGUIItems = new StatsGUIItems(this, chatColor);
+        levelController = new LevelController(this, chatColor);
     }
 
     private void registerCommands(){
@@ -70,7 +73,7 @@ public class KillLevels extends JavaPlugin {
 
     private void registerListeners(){
         pm.registerEvents(new PlayerJoinSQL(this, messagesFile), this);
-        pm.registerEvents(new PlayerKill(this), this);
+        pm.registerEvents(new PlayerKill(this, levelController), this);
     }
 
     private void setupSQL() {

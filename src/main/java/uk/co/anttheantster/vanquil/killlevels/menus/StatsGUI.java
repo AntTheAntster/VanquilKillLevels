@@ -22,11 +22,16 @@ public class StatsGUI {
     }
 
     public Inventory statsGUI(Player player){
-        Inventory inv = Bukkit.createInventory(player, 27, chatColor.message("&a&lStats"));
+        int invSize = 27;
+        Inventory inv = Bukkit.createInventory(player, invSize, chatColor.message("&a&lStats"));
 
-
+        for (int i = 0; i < invSize; i++){
+            inv.setItem(i, statsGUIItems.filler());
+        }
 
         inv.setItem(10, statsGUIItems.expItem());
+        inv.setItem(12, statsGUIItems.killItem());
+        inv.setItem(14, statsGUIItems.levelItem());
 
         return inv;
     }
