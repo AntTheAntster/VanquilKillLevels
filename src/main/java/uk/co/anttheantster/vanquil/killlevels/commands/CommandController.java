@@ -9,10 +9,14 @@ import uk.co.anttheantster.vanquil.killlevels.KillLevels;
 public class CommandController implements CommandExecutor {
     private KillLevels plugin;
     private ShowEXP showEXP;
+    private ShowLevel showLevel;
+    private ShowKills showKills;
 
-    public CommandController(KillLevels plugin, ShowEXP showEXP){
+    public CommandController(KillLevels plugin, ShowEXP showEXP, ShowLevel showLevel, ShowKills showKills){
         this.plugin = plugin;
         this.showEXP = showEXP;
+        this.showLevel = showLevel;
+        this.showKills = showKills;
     }
 
     @Override
@@ -26,7 +30,7 @@ public class CommandController implements CommandExecutor {
 
         }
         if (args[0].equalsIgnoreCase("kills")){
-
+            showKills.showKills(player);
         }
 
         return false;

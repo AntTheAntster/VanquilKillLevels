@@ -5,8 +5,13 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import uk.co.anttheantster.vanquil.killlevels.commands.CommandController;
 import uk.co.anttheantster.vanquil.killlevels.commands.ShowEXP;
+import uk.co.anttheantster.vanquil.killlevels.commands.ShowKills;
+import uk.co.anttheantster.vanquil.killlevels.commands.ShowLevel;
+import uk.co.anttheantster.vanquil.killlevels.items.StatsGUIItems;
 import uk.co.anttheantster.vanquil.killlevels.listeners.PlayerJoinSQL;
 import uk.co.anttheantster.vanquil.killlevels.listeners.PlayerKill;
+import uk.co.anttheantster.vanquil.killlevels.menus.StatsGUI;
+import uk.co.anttheantster.vanquil.killlevels.utils.ChatColor;
 import uk.co.anttheantster.vanquil.killlevels.utils.MessagesFile;
 import uk.co.anttheantster.vanquil.killlevels.utils.MySQL;
 import uk.co.anttheantster.vanquil.killlevels.utils.SQLGetter;
@@ -20,6 +25,11 @@ public class KillLevels extends JavaPlugin {
 
     public MessagesFile messagesFile;
     public ShowEXP showEXP;
+    public ShowLevel showLevel;
+    public ShowKills showKills;
+    public ChatColor chatColor;
+    public StatsGUI statsGUI;
+    public StatsGUIItems statsGUIItems;
 
     private PluginManager pm = Bukkit.getPluginManager();
 
@@ -47,10 +57,15 @@ public class KillLevels extends JavaPlugin {
     private void registerClasses(){
         messagesFile = new MessagesFile(this);
         showEXP = new ShowEXP(this);
+        showLevel = new ShowLevel();
+        showKills = new ShowKills(this);
+        chatColor = new ChatColor();
+        statsGUI = new StatsGUI(this, chatColor, statsGUIItems);
+        statsGUIItems = new StatsGUIItems(this, chatColor);
     }
 
     private void registerCommands(){
-        getCommand("vkl").setExecutor(new CommandController(this, showEXP));
+        getCommand("vkl").setExecutor(new CommandController(this, showEXP, showLevel, showKills));
     }
 
     private void registerListeners(){
