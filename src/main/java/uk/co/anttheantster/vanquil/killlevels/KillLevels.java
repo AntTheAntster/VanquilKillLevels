@@ -72,7 +72,7 @@ public class KillLevels extends JavaPlugin {
     }
 
     private void registerListeners(){
-        pm.registerEvents(new PlayerJoinSQL(this, messagesFile), this);
+        pm.registerEvents(new PlayerJoinSQL(this), this);
         pm.registerEvents(new PlayerKill(this, levelController), this);
     }
 
