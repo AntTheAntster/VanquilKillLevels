@@ -4,6 +4,8 @@ import org.bukkit.entity.Player;
 import uk.co.anttheantster.vanquil.killlevels.KillLevels;
 import uk.co.anttheantster.vanquil.killlevels.utils.ChatColor;
 
+import java.util.HashMap;
+
 public class LevelController {
 
     private KillLevels plugin;
@@ -16,6 +18,7 @@ public class LevelController {
     public void kill(Player player){
         int kills = Integer.parseInt(plugin.data.getKills(player));
         plugin.data.setKills(kills + 1, player);
+        exp(player);
     }
 
     private void exp(Player player){
@@ -33,7 +36,7 @@ public class LevelController {
                  expReqNext = expReq + plugin.getConfig().getInt("Settings.Exp Increase.Amount");
              }
              plugin.data.setExpReq(expReqNext, player);
-
+             pLevelUp(player);
          }
 
     }

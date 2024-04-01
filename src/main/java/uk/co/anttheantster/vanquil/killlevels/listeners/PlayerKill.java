@@ -19,7 +19,6 @@ public class PlayerKill implements Listener {
     public void playerKill(PlayerDeathEvent e){
 
         Player killer = e.getEntity().getKiller();
-        Player player = e.getEntity().getPlayer();
 
         levelController.kill(killer);
     }

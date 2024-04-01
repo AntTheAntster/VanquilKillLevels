@@ -5,10 +5,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import uk.co.anttheantster.vanquil.killlevels.KillLevels;
-import uk.co.anttheantster.vanquil.killlevels.utils.MessagesFile;
 
 public class PlayerJoinSQL implements Listener {
-    private final KillLevels plugin;
+    private KillLevels plugin;
     public PlayerJoinSQL(KillLevels plugin){
         this.plugin = plugin;
     }

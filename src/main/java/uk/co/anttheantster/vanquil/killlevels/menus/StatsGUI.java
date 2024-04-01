@@ -25,13 +25,13 @@ public class StatsGUI {
         int invSize = 27;
         Inventory inv = Bukkit.createInventory(player, invSize, chatColor.message("&a&lStats"));
 
-        for (int i = 0; i < invSize; i++){
+        /*for (int i = 0; i < invSize; i++){
             inv.setItem(i, statsGUIItems.filler());
         }
 
         inv.setItem(10, statsGUIItems.expItem());
         inv.setItem(12, statsGUIItems.killItem());
-        inv.setItem(14, statsGUIItems.levelItem());
+        inv.setItem(14, statsGUIItems.levelItem());*/
 
         return inv;
     }

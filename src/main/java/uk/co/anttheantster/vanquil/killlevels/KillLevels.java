@@ -68,7 +68,7 @@ public class KillLevels extends JavaPlugin {
     }
 
     private void registerCommands(){
-        getCommand("vkl").setExecutor(new CommandController(this, showEXP, showLevel, showKills));
+        getCommand("vkl").setExecutor(new CommandController(this, showEXP, showLevel, showKills, statsGUI, levelController));
     }
 
     private void registerListeners(){
